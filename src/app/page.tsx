@@ -1,9 +1,90 @@
 export default function Home() {
-  return (
-    <main style={{ fontFamily: "system-ui", padding: "2rem", maxWidth: 720 }}>
+  return (<main style={{
+      padding: "40px",
+      fontFamily: "Arial, sans-serif",
+      maxWidth: "900px",
+      margin: "auto"
+    }}>
       <h1>MetaFlux — Backend Runtime</h1>
-      <p>Metadata-driven API runtime for Track A (AI App Generator).</p>
+      <p style={{ fontSize: "18px" }}>
+        AI-powered metadata driven backend platform for dynamic API generation.
+      </p>
+       <hr />
+       <h2>Features</h2>
+
       <ul>
+        <li>Authentication system with JWT</li>
+        <li>Dynamic API generation</li>
+        <li>Entity schema creation</li>
+        <li>Workflow execution engine</li>
+        <li>PostgreSQL + Prisma + Neon database</li>
+        <li>OpenAPI documentation </li>
+      </ul>
+
+      <hr />
+       <h2>API Endpoints</h2>
+
+      <div style={{
+        display:"flex",
+        gap:"15px",
+        flexWrap:"wrap"
+      }}>
+
+        <a
+          href="/api/runtime/health"
+          target="_blank"
+          style={{
+            padding:"10px 20px",
+            border:"1px solid black",
+            textDecoration:"none"
+          }}
+        >
+          Runtime Health
+        </a>
+
+        <a
+          href="/api/runtime/openapi"
+          target="_blank"
+          style={{
+            padding:"10px 20px",
+            border:"1px solid black",
+            textDecoration:"none"
+          }}
+        >
+          OpenAPI Spec
+        </a>
+
+      </div>
+
+      <hr style={{margin:"40px 0"}} />
+
+<h2>Tech Stack</h2>
+
+<div
+  style={{
+    padding:"15px",
+    border:"1px solid #ddd",
+    borderRadius:"10px",
+    marginBottom:"30px"
+  }}
+>
+  <p>
+    Next.js • TypeScript • Prisma • PostgreSQL • Neon • JWT • Vercel
+  </p>
+</div>
+
+<hr style={{margin:"40px 0"}} />
+
+<h2>Available APIs</h2>
+
+<div
+  style={{
+    padding:"20px",
+    border:"1px solid #ddd",
+    borderRadius:"10px"
+  }}
+>
+  <ul>
         <li>
           <code>GET /api/runtime/health</code> — health check
         </li>
@@ -35,6 +116,15 @@ export default function Home() {
           <code>CRUD /api/apps/:appId/entities/:entity</code> — dynamic records
         </li>
       </ul>
+</div>
+
+      <hr />
+      <h2>Tech Stack</h2>
+      <p>
+        Next.js • TypeScript • Prisma • PostgreSQL • Neon • JWT • Vercel
+      </p>
+
+      
       <p>
         See <code>README.md</code> and <code>examples/task-manager.config.json</code>.
       </p>
