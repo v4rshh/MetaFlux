@@ -234,7 +234,7 @@ https://meta-flux-nu.vercel.app/api/runtime/health
 GitHub:
 https://github.com/v4rshh/MetaFlux
 
-#Assignment Scope
+# Assignment Scope
 **Role:** Backend Engineer  
 **Track:** Track A — AI App Generator
 
