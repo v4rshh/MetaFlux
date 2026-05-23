@@ -1,14 +1,35 @@
-# MetaFroge AI — Backend Runtime (Track A)
+# MetaFlux — Backend Runtime (Track A)
 
 Metadata-driven backend that converts JSON app configuration into working APIs, database structure, and CRUD operations. Built for the **Backend Engineer** role on Track A (AI App Generator), inspired by platforms like [Base44](https://base44.com/).
 
-## Stack
+The system transforms JSON-based application configurations into dynamic APIs, schema definitions, CRUD operations, and workflow execution while gracefully handling malformed or incomplete configurations.
 
+## Features
+
+- Dynamic API generation from metadata
+- Runtime CRUD execution
+- Schema normalization and validation
+- Authentication with user-scoped access
+- Workflow triggers and execution
+- Graceful handling of malformed configurations
+- OpenAPI specification generation
+
+### Stack
+- **Node.js**
 - **Next.js 15** API Routes
 - **TypeScript**
-- **PostgreSQL** + **Prisma ORM**
 - **Zod** (dynamic validation)
-- **JWT** authentication (user-scoped data)
+
+- ### Database
+- **PostgreSQL** (Neon)
+- **Prisma ORM**
+
+### Authentication
+- **JWT** Authentication (user-scoped data)
+
+### Supporting Framework
+- Next.js 15
+- React (project framework dependency)
 
 ## Architecture
 
@@ -21,6 +42,7 @@ JSON Config → Config Normalizer → Schema Manager → Prisma DB
                       ↓
                Workflow Engine (triggers + steps)
 ```
+The runtime processes incoming application metadata, normalizes inconsistent configurations, generates validation schemas dynamically, synchronizes entity definitions, and exposes dynamic CRUD APIs while maintaining user-scoped access.
 
 ### Core modules (`src/lib/runtime/`)
 
@@ -155,7 +177,7 @@ npm run test:all
 Integration tests auto-skip when Postgres is unreachable. Use a dedicated test database URL in `.env`:
 
 ```
-DATABASE_URL="postgresql://user:pass@localhost:5432/metafroge_test"
+DATABASE_URL="postgresql://user:pass@localhost:5432/metaflux_test"
 ```
 
 ### Response shape
@@ -185,9 +207,16 @@ See `examples/task-manager.config.json` — includes intentional invalid field t
 
 ## Deployment
 
-- **Vercel**: deploy Next.js app; set `DATABASE_URL` to [Neon](https://neon.tech) Postgres
-- **Railway / Render**: run `npm run build && npm start`; run `prisma migrate deploy` in CI
+Frontend/API Hosting:
+- Vercel
 
+Database:
+- Neon PostgreSQL
+
+Environment Variables:
+
+DATABASE_URL=<Neon PostgreSQL URL>
+JWT_SECRET=<JWT Secret>
 ## Evaluation alignment
 
 | Criteria | Implementation |
