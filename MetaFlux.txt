@@ -1,2 +1,28 @@
 MetaFlux -A Metadata-Driven Backend Runtime Engine
 Dynamic API & Schema Runtime from JSON Configuration
+
+## Assignment Scope
+
+**Role:** Backend Engineer  
+**Track:** Track A — AI App Generator
+
+Implemented focus areas:
+
+- Dynamic API generation
+- Runtime CRUD execution
+- Schema normalization
+- Validation handling
+- Authentication and user-scoped access
+- Workflow execution
+- Graceful error handling
+
+## Evaluation alignment
+
+| Criteria | Implementation |
+|----------|----------------|
+| API architecture | RESTful dynamic routes per entity; discovery via `/schema` |
+| Schema design | Prisma core + JSON entity schemas synced from config |
+| Validation | Zod built from normalized field definitions |
+| Reliability | Typed errors, partial config support, stripped unknown fields |
+| Edge cases | Missing fields, malformed JSON, unknown types, schema mismatch |
+| Auth | JWT + `user`/`owner`/`public` entity scopes |

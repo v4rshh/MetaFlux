@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "MetaFlux AI -Runtime",
+  title: "MetaFlux",
   description: "Metadata-driven application backend runtime",
 };
 
