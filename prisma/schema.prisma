@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String         @id @default(cuid())
+  email     String         @unique
+  password  String
+  name      String?
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  apps      App[]
+  records   EntityRecord[]
+}
+
+model App {
+  id            String               @id @default(cuid())
+  slug          String               @unique
+  name          String
+  description   String?
+  config        Json
+  configVersion Int                  @default(1)
+  ownerId       String
+  owner         User                 @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  entities      EntityDefinition[]
+  records       EntityRecord[]
+  workflows     WorkflowDefinition[]
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+
+  @@index([ownerId])
+}
+
+model EntityDefinition {
+  id        String         @id @default(cuid())
+  appId     String
+  app       App            @relation(fields: [appId], references: [id], onDelete: Cascade)
+  name      String
+  label     String?
+  schema    Json
+  relations Json?
+  scopes    Json?
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  records   EntityRecord[]
+
+  @@unique([appId, name])
+  @@index([appId])
+}
+
+model EntityRecord {
+  id        String           @id @default(cuid())
+  appId     String
+  app       App              @relation(fields: [appId], references: [id], onDelete: Cascade)
+  entityId  String
+  entity    EntityDefinition @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
+  data      Json
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@index([appId, entityId])
+  @@index([userId])
+  @@index([appId, entityId, userId])
+}
+
+model WorkflowDefinition {
+  id        String        @id @default(cuid())
+  appId     String
+  app       App           @relation(fields: [appId], references: [id], onDelete: Cascade)
+  name      String
+  trigger   Json
+  steps     Json
+  enabled   Boolean       @default(true)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  runs      WorkflowRun[]
+
+  @@unique([appId, name])
+  @@index([appId])
+}
+
+model WorkflowRun {
+  id         String             @id @default(cuid())
+  appId      String
+  workflowId String
+  workflow   WorkflowDefinition @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  status     String
+  event      String
+  input      Json?
+  logs       Json               @default("[]")
+  output     Json?
+  error      String?
+  startedAt  DateTime           @default(now())
+  finishedAt DateTime?
+
+  @@index([appId])
+  @@index([workflowId])
+}
