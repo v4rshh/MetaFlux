@@ -1,0 +1,36 @@
+{
+  "name": "Task Manager",
+  "slug": "task-manager",
+  "version": 1,
+  "entities": [
+    {
+      "name": "tasks",
+      "label": "Tasks",
+      "scope": "user",
+      "fields": [
+        { "name": "title", "type": "string", "required": true, "validation": { "minLength": 1, "maxLength": 200 } },
+        { "name": "description", "type": "text" },
+        { "name": "status", "type": "enum", "enum": ["todo", "in_progress", "done"], "default": "todo" },
+        { "name": "priority", "type": "number", "validation": { "min": 1, "max": 5 } },
+        { "name": "dueDate", "type": "date" },
+        { "name": "completed", "type": "boolean", "default": false },
+        { "name": "unknownField", "type": "not_a_real_type" }
+      ]
+    },
+    {
+      "name": "tags",
+      "scope": "user",
+      "fields": ["name", { "name": "color", "type": "string", "default": "#6366f1" }]
+    }
+  ],
+  "workflows": [
+    {
+      "name": "on-task-complete",
+      "trigger": { "type": "record.update", "entity": "tasks", "field": "status", "value": "done" },
+      "steps": [{ "type": "notify", "config": { "message": "Task completed!" } }]
+    }
+  ],
+  "ui": {
+    "pages": [{ "id": "dashboard", "component": "Dashboard" }]
+  }
+}
