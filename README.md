@@ -1,8 +1,6 @@
 # MetaFlux — Backend Runtime (Track A)
 
-Metadata-driven backend that converts JSON app configuration into working APIs, database structure, and CRUD operations. Built for the **Backend Engineer** role on Track A (AI App Generator), inspired by platforms like [Base44](https://base44.com/).
-
-The system transforms JSON-based application configurations into dynamic APIs, schema definitions, CRUD operations, and workflow execution while gracefully handling malformed or incomplete configurations.
+Metadata-driven backend system transforms JSON-based application configurations into dynamic APIs, schema definitions, CRUD operations, and workflow execution while handling incomplete configurations.
 
 ## Features
 
@@ -14,20 +12,20 @@ The system transforms JSON-based application configurations into dynamic APIs, s
 - Graceful handling of malformed configurations
 - OpenAPI specification generation
 
-### Stack
+## Tech Stack
 - **Node.js**
 - **Next.js 15** API Routes
 - **TypeScript**
 - **Zod** (dynamic validation)
 
-- ### Database
+## Database
 - **PostgreSQL** (Neon)
 - **Prisma ORM**
 
-### Authentication
+## Authentication
 - **JWT** Authentication (user-scoped data)
 
-### Supporting Framework
+## Supporting Framework
 - Next.js 15
 - React (project framework dependency)
 
@@ -57,7 +55,7 @@ The runtime processes incoming application metadata, normalizes inconsistent con
 | `api-generator.ts` | REST route descriptors for discovery |
 | `errors.ts` | Typed `RuntimeError` with HTTP status codes |
 
-### Graceful degradation
+## Graceful degradation
 
 The runtime **never crashes** on bad config. Instead it:
 
@@ -67,7 +65,7 @@ The runtime **never crashes** on bad config. Instead it:
 - Returns `422` with structured `issues[]` for validation failures
 - Includes `warnings[]` in successful responses when config was partial
 
-### Data scoping
+## Data scoping
 
 | Scope | Behavior |
 |-------|----------|
@@ -159,7 +157,7 @@ GET /api/runtime/openapi          # platform routes (auth, validate, apps)
 GET /api/apps/:appId/openapi      # app-specific CRUD + workflows
 ```
 
-Import the `data.spec` object into Swagger UI, Postman, or codegen tools.
+The generated OpenAPI specification can be imported into Swagger UI, Postman, or API code generation tools.
 
 ## Testing
 
@@ -207,7 +205,7 @@ See `examples/task-manager.config.json` — includes intentional invalid field t
 
 ## Deployment
 
-Frontend/API Hosting:
+API Hosting:
 - Vercel
 
 Database:
@@ -215,10 +213,42 @@ Database:
 
 Environment Variables:
 
-DATABASE_URL=<Neon PostgreSQL URL>
-JWT_SECRET=<JWT Secret>
-## Evaluation alignment
+```env
+DATABASE_URL="Neon PostgreSQL URL"
 
+JWT_SECRET="JWT Secret"
+
+JWT_EXPIRES_IN="7d"
+```
+
+## Live Demo
+🔗 Backend Runtime: https://meta-flux-nu.vercel.app
+
+🔗 OpenAPI Documentation:
+https://meta-flux-nu.vercel.app/api/runtime/openapi
+
+🔗 Health Check:
+https://meta-flux-nu.vercel.app/api/runtime/health
+
+## Repository
+GitHub:
+https://github.com/v4rshh/MetaFlux
+
+#Assignment Scope
+**Role:** Backend Engineer  
+**Track:** Track A — AI App Generator
+
+Implemented focus areas:
+
+- Dynamic API generation
+- Runtime CRUD execution
+- Schema normalization
+- Validation handling
+- Authentication and user-scoped access
+- Workflow execution
+- error handling
+
+# Evaluation alignment
 | Criteria | Implementation |
 |----------|----------------|
 | API architecture | RESTful dynamic routes per entity; discovery via `/schema` |
