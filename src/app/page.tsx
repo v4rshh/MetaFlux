@@ -118,13 +118,7 @@ export default function Home() {
       </ul>
 </div>
 
-      <hr />
-      <h2>Tech Stack</h2>
-      <p>
-        Next.js • TypeScript • Prisma • PostgreSQL • Neon • JWT • Vercel
-      </p>
 
-      
       <p>
         See <code>README.md</code> and <code>examples/task-manager.config.json</code>.
       </p>
