@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main style={{ fontFamily: "system-ui", padding: "2rem", maxWidth: 720 }}>
-      <h1>MetaFroge AI — Backend Runtime</h1>
+      <h1>MetaFlux — Backend Runtime</h1>
       <p>Metadata-driven API runtime for Track A (AI App Generator).</p>
       <ul>
         <li>

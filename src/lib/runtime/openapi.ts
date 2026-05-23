@@ -330,7 +330,7 @@ export function generateOpenApiSpec(options: {
       version: "1.0.0",
       description: options.appId
         ? `Generated API for app ${options.appSlug ?? options.appId}`
-        : "MetaFroge AI platform API",
+        : "MetaFlux platform API",
     },
     servers: [{ url: options.baseUrl, description: "API server" }],
     paths,

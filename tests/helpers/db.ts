@@ -20,12 +20,12 @@ export async function resetTestData() {
   await prisma.workflowDefinition.deleteMany();
   await prisma.app.deleteMany();
   await prisma.user.deleteMany({
-    where: { email: { endsWith: "@metafroge.test" } },
+    where: { email: { endsWith: "@metaflux.test" } },
   });
 }
 
 export async function createTestUser(suffix = "") {
-  const email = `user${suffix}@metafroge.test`;
+  const email = `user${suffix}@metaflux.test`;
   return prisma.user.upsert({
     where: { email },
     create: {

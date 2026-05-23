@@ -3,7 +3,7 @@ import { jsonSuccess } from "@/lib/api/response";
 
 export async function GET(req: Request) {
   const spec = generateOpenApiSpec({
-    appName: "MetaFroge AI Platform",
+    appName: "MetaFlux Platform",
     baseUrl: getBaseUrl(req),
     entities: [],
     routes: [],

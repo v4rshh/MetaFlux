@@ -12,7 +12,7 @@ export async function GET() {
 
   return jsonSuccess({
     status: "ok",
-    service: "metafroge-runtime",
+    service: "metaflux-runtime",
     database: db,
     timestamp: new Date().toISOString(),
   });

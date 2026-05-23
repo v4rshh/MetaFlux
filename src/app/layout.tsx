@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "MetaFroge AI Runtime",
+  title: "MetaFlux AI -Runtime",
   description: "Metadata-driven application backend runtime",
 };
 
